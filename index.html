@@ -7,13 +7,64 @@
     <title>Vanilla Js</title>
   </head>
   <body>
-    
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, illo
-      amet voluptatum ipsum eveniet ducimus tempora beatae veniam aut. Quas
-      laborum consectetur numquam illo nesciunt vero quibusdam adipisci deleniti
-      veritatis.
-    </p>
+    <header
+      class="container sticky-top bg-white mx-auto d-flex justify-content-between border rounded align-items-center m-2 p-2"
+    >
+      <h5 class="mb-0">My Shop</h5>
+      <button
+        type="button"
+        class="btn btn-primary position-relative cart-btn animate__animated"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#cartOffcanvas"
+        aria-controls="cartOffcanvas"
+      >
+        <i class="bi bi-cart"></i>
+        <span
+          class="cart-counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          0
+        </span>
+      </button>
+    </header>
+
+    <div class="container">
+      <div class="items-row row g-4 mb-4">
+        <!-- Items list here -->
+      </div>
+    </div>
+
+    <div
+      class="offcanvas offcanvas-end"
+      data-bs-scroll="true"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      id="cartOffcanvas"
+      aria-labelledby="cartOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title mb-0" id="offcanvasWithBothOptionsLabel">
+          <i class="bi bi-cart"></i>
+          Cart List
+          <span class="badge bg-primary cart-counter">0</span>
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div id="cartBox" class="offcanvas-body">
+        <!-- item in cart here -->
+      </div>
+      <div class="offcavas-footer">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="mb-0">Total</p>
+          <p class="mb-0">$<span id="total">0</span></p>
+        </div>
+        <button class="btn btn-primary w-100 d-block">Check Out</button>
+      </div>
+    </div>
 
     <script type="module" src="/main.js"></script>
   </body>
