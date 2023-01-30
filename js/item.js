@@ -13,9 +13,9 @@ export const createItemUi = ({ id, image, title, description, price }) => {
               <p class="card-text small text-black-50">
                   ${excerpt(description)}
               </p>
-              <div class="d-flex mt-auto justify-content-between align-items-center">
+              <div class="d-flex mt-auto justify-content-between align-items-center" >
                   <p class="fw-bold mb-0">$<span>${price}</span></p>
-                  <button class="btn btn-primary add-cart"><i class="bi bi-cart-plus pe-none "></i></button>
+                  <button class="btn btn-primary add-cart" item-btn-id="${id}"><i class="bi bi-cart-plus pe-none " ></i></button>
               </div>
           </div>
       </div>

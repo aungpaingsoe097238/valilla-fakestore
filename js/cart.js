@@ -6,29 +6,11 @@ export const cartCounterUpdate = () => {
   cartCounter.forEach((current) => (current.innerText = parseInt(count) + 1));
 };
 
-// remove cart item
-window.removeCartItem = (event) => {
-  event.target
-    .closest(".item-in-cart")
-    .classList.add("animate__rotateOutDownLeft");
-
-  setTimeout(() => {
-    event.target.closest(".item-in-cart").remove();
-  }, 1000);
-
-  let itemCards  = [...document.querySelectorAll(".item-card")];
-  
-  itemCards.forEach(el => console.log(el) )
-
-};
-
 // cart item total price
 export const costTotal = () => {
-  let result = [...document.querySelectorAll(".cart-cost")].reduce(
-    (pv, cv) => pv + parseFloat(cv.innerHTML),
-    0
-  );
-  total.innerHTML = result.toFixed(2);
+  let cartCosts = [...document.querySelectorAll(".cart-cost")];
+  let result = [cartCosts.reduce((pv, cv) => pv + parseFloat(cv.innerHTML), 0)];
+  total.innerHTML = result[0].toFixed(2);
 };
 
 // Check Same Cart Item
@@ -77,6 +59,31 @@ window.dec = (event, price) => {
   costTotal();
 };
 
+// remove cart item
+window.removeCartItem = (event) => {
+  event.target
+    .closest(".item-in-cart")
+    .classList.add("animate__rotateOutDownLeft");
+
+  // setTimeout(() => {
+  //   event.target.closest(".item-in-cart").remove();
+  // }, 1000);
+
+  // all Fresh Cart Btns
+  let itemCardBtns = [...document.querySelectorAll(".add-cart")];
+
+  let removeCard = itemCardBtns.find(
+    (el) =>
+      el.getAttribute("item-btn-id") ==
+      event.target.closest(".cart-item").getAttribute("item-id")
+  );
+
+  removeCard.classList.remove("disabled");
+
+
+  // console.log(parseInt(total.innerHTML) - 100);
+};
+
 // create item in cart
 export const createItemInCart = ({ id, title, price, image }) => {
   const div = document.createElement("div");
@@ -100,7 +107,7 @@ export const createItemInCart = ({ id, title, price, image }) => {
         </div>
         <div class="col-6">
           <div class="input-group input-group-sm">
-            <button class="btn btn-primary btn-dec " onclick="dec(event,${price})">
+            <button class="btn btn-primary btn-dec" onclick="dec(event,${price})">
               <i class="bi bi-dash pe-none"></i>
             </button>
             <input type="number" class="form-control text-end cart-quantity" value="1" >
